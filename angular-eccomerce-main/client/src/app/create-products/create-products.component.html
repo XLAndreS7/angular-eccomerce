@@ -1,0 +1,98 @@
+<div class="register-container">
+  <div class="form-container">
+    <h2>{{ prodId ? "Update" : "Add" }} product</h2>
+    <nz-alert
+      *ngIf="errorMessage"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="errorMessage"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="title">Title</label>
+        <input
+          nz-input
+          type="text"
+          name="title"
+          [(ngModel)]="title"
+          placeholder="Enter title"
+        />
+      </div>
+      <div class="input-container">
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="cat_id" name="category">
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.title }}
+          </option>
+        </select>
+      </div>
+
+      <div class="input-container">
+        <label for="fullName">Short Description</label>
+        <input
+          nz-input
+          type="text"
+          name="short_description"
+          [(ngModel)]="short_desc"
+          placeholder="Enter short description"
+        />
+      </div>
+      <div class="input-container">
+        <label for="fullName">Description</label>
+        <input
+          nz-input
+          type="text"
+          name="description"
+          [(ngModel)]="description"
+          placeholder="Enter description"
+        />
+      </div>
+      <div class="input-container">
+        <label for="price">Price</label>
+        <input
+          nz-input
+          type="text"
+          name="price"
+          [(ngModel)]="price"
+          placeholder="Enter price"
+        />
+      </div>
+      <div class="input-container">
+        <label for="quantity">Quantity</label>
+        <input
+          nz-input
+          type="text"
+          name="quantity"
+          [(ngModel)]="quantity"
+          placeholder="Enter quantity"
+        />
+      </div>
+      <div class="input-container">
+        <label for="image">Image</label>
+        <input
+          nz-input
+          type="text"
+          name="image"
+          [(ngModel)]="image"
+          placeholder="Enter image URL"
+        />
+      </div>
+      <div class="cta-container">
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+          {{ prodId ? "Actualizar" : "Agregar" }}
+        </button>
+        <div>
+          <div>
+            <a routerLink="/admin/dashboard">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

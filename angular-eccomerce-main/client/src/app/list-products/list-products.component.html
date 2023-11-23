@@ -1,0 +1,82 @@
+<div class="home-container">
+  <div class="categories">
+    <div class="categories__header">
+      <h2>Productos</h2>
+    </div>
+    <div class="table-container">
+      <div class="buttons-container">
+        <button nz-button nzType="primary" (click)="redirectToEdit(null)">
+          <span nz-icon nzType="plus"></span>
+          Add product
+        </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Producto</th>
+            <th>Name</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products">
+            <td>{{ prod.id }}</td>
+            <td>
+              <img
+                src="{{ prod.image }}"
+                alt="Product Image"
+                class="product-image"
+              />
+            </td>
+            <td>{{ prod.title }}</td>
+            <td>{{ prod.quantity }}</td>
+            <td>{{ prod.price }}</td>
+            <td>
+              <button
+                nz-button
+                nzType="primary"
+                (click)="redirectToEdit(prod.id)"
+              >
+                <i
+                  nz-icon
+                  nzType="edit"
+                  [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <button
+          nz-button
+          nzType="primary"
+          (click)="leftPage()"
+          [ngClass]="{ disabled: productPageCounter == 1 }"
+        >
+          <i
+            nz-icon
+            nzType="arrow-left"
+            [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
+          ></i>
+        </button>
+        <span>{{ productPageCounter }}</span>
+        <button
+          nz-button
+          nzType="primary"
+          (click)="rightPage()"
+          [ngClass]="{ disabled: products.length !== 10 }"
+        >
+          <i
+            nz-icon
+            nzType="arrow-right"
+            [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
